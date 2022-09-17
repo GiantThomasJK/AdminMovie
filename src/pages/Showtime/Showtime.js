@@ -18,17 +18,18 @@ import { useFormik } from "formik";
 import moment from "moment";
 
 function Showtime(props) {
+  let { id } = props.match.params;
   const formik = useFormik({
     initialValues: {
-      maPhim: props.match.params.id,
+      maPhim: id*1,
       ngayChieuGioChieu: "",
       maRap: "",
       giaVe: 0,
     },
 
     onSubmit: async (values) => {
-      console.log(values);
       try {
+        console.log(values);
         const result = await createScheduleTheater(values);
         alert(result);
       } catch (err) {
@@ -95,17 +96,17 @@ function Showtime(props) {
   const onOk = (value) => {
     formik.setFieldValue(
       "ngayChieuGioChieu",
-      moment(value).format("DD/MM/YY hh:mm:ss")
+      moment(value).format("DD/MM/YYYY hh:mm:ss")
     );
-    console.log(moment(value).format("DD/MM/YY hh:mm:ss"));
+    console.log(moment(value).format("DD/MM/YYYY hh:mm:ss"));
   };
 
   const onChangeDate = (value) => {
     formik.setFieldValue(
       "ngayChieuGioChieu",
-      moment(value).format("DD/MM/YY hh:mm:ss")
+      moment(value).format("DD/MM/YYYY hh:mm:ss")
     );
-    console.log(moment(value).format("DD/MM/YY hh:mm:ss"));
+    console.log(moment(value).format("DD/MM/YYYY hh:mm:ss"));
   };
 
   const onChangeInputNumber = (value) => {
@@ -163,7 +164,7 @@ function Showtime(props) {
 
             <Form.Item label="Ngày chiếu giờ chiếu">
               <DatePicker
-                format="DD/MM/YY hh:mm:ss"
+                format="DD/MM/YYYY hh:mm:ss"
                 showTime
                 onChange={onChangeDate}
                 onOk={onOk}

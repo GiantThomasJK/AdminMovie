@@ -32,7 +32,7 @@ const Edit = (props) => {
 
   useEffect(() => {
     let { id } = props.match.params;
-
+    console.log(id);
     dispatch(fetchMoviesDeatil(id));
   }, []);
 

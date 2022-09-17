@@ -12,14 +12,70 @@ import { useState, useNavigate } from "react";
 import { NavLink, Route, useHistory } from "react-router-dom";
 import SubMenu from "antd/lib/menu/SubMenu";
 import Background from "assets/img/BG.jpg";
+import { useDispatch, useSelector } from "react-redux";
+import { SET_PROFILE } from "redux/authAction";
 
 function AdminTemplate(props) {
   const { Header, Content, Footer, Sider } = Layout;
   const { Component, ...restProps } = props;
 
+  const userProfile = useSelector((state) => state.auth.profile);
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const [collapsed, setCollapsed] = useState(false);
+
+  const handleLogout = (e) => {
+    e.preventDefault();
+    localStorage.removeItem("token");
+    localStorage.removeItem("USER_LOGIN");
+    localStorage.removeItem("filmDetails");
+    dispatch({
+      type: SET_PROFILE,
+      payload: null,
+    });
+
+    history.push("/");
+  };
+
+  const renderUserProfile = () => {
+    if (userProfile) {
+      return (
+        <>
+          <a style={{ color: "white" }} href="#">
+            Hi, {userProfile.hoTen}
+          </a>
+          <a
+            style={{ color: "white" }}
+            className="mr-5 pointer-events-auto ml-8 rounded-md bg-indigo-600 py-2 px-3 text-[0.8125rem] font-semibold leading-5 text-white hover:bg-indigo-500"
+            href="#"
+            onClick={handleLogout}
+          >
+            Log out
+          </a>
+        </>
+      );
+    }
+
+    return (
+      <>
+        <a
+          className="mr-5 pointer-events-auto ml-8 rounded-md bg-indigo-600 py-2 px-3 text-[0.8125rem] font-semibold leading-5 text-white hover:bg-indigo-500"
+          href="#"
+        >
+          Sign In
+        </a>
+        <a
+          style={{ color: "white" }}
+          className="mr-5 pointer-events-auto ml-8 rounded-md bg-indigo-600 py-2 px-3 text-[0.8125rem] font-semibold leading-5 text-white hover:bg-indigo-500"
+          href="#"
+          onClick={handleLogout}
+        >
+          Log out
+        </a>
+      </>
+    );
+  };
 
   return (
     <Route
@@ -78,11 +134,12 @@ function AdminTemplate(props) {
               </Sider>
               <Layout className="site-layout">
                 <Header
-                  className="site-layout-background lg:border-b dark:border-slate-50/[0.06]"
+                  className="text-right"
                   style={{
                     padding: 0,
                   }}
                 >
+                  {renderUserProfile()}
                 </Header>
                 <Content
                   style={

@@ -14,7 +14,7 @@ export const fetchMoviesAction = (config, cb, tenPhim = "") => {
     try {
       const params = tenPhim != "" ? `&tenPhim=${tenPhim}` : "";
       const res = await instance.request({
-        url: "api/QuanLyPhim/LayDanhSachPhim?maNhom=GP02" + params,
+        url: "api/QuanLyPhim/LayDanhSachPhim?maNhom=GP01" + params,
         method: "GET",
         params: {
           soTrang: config.currentPage,
@@ -173,10 +173,10 @@ export const createScheduleTheater = async (shedule) => {
     const res = await instance.request({
       url: "/api/QuanLyDatVe/TaoLichChieu",
       method: "POST",
-      params: {
-        lich: shedule,
-      },
+      data: shedule,
     });
     return res.data.content;
-  } catch (err) {}
+  } catch (err) {
+    console.log(err);
+  }
 };
