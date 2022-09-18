@@ -1,0 +1,28 @@
+{
+    "Hi" : "Xin chào",
+    "Sign in": "Đăng nhập",
+    "Log out" : "Đăng xuất",
+    "Sign in to your account": "Đăng nhập tài khoản của bạn",
+    "Email address": "Tài khoản",
+    "Password": "Mật khẩu",
+    "Forgot your password?": "Quên mật khẩu?",
+    "Remember me": "Ghi nhớ tôi",
+    "User management": "Quản lý người dùng",
+    "Account" :"Tài khoản",
+    "Fullname": "Họ tên",
+    "Email" :"Email",
+    "Phonenumber": "Số điện thoại",
+    "Action" : "Hành động",
+    "Update": "Cập nhật",
+    "User type" : "Loại người dùng",
+    "Back": "Trở về",
+    "Add user": "Thêm người dùng",
+    "Add film": "Thêm phim",
+    "Film management" : "Quản lý phim",
+    "Search your account or fullname": "Nhập tài khoản hoặc họ tên người dùng",
+    "User": "Người dùng",
+    "Films": "Phim",
+    "Showtime": "Lịch chiếu",
+    "Add Film": "Thêm phim"
+
+}

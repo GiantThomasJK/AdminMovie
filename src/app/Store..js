@@ -3,9 +3,11 @@ import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import movieReducer from "redux/movieSlice";
 import authReducer from "redux/authSlice";
+import userReducer from "redux/userSlice"
 const rootReducer = combineReducers({
   movies: movieReducer,
   auth: authReducer,
+  users: userReducer,
 });
 
 const logger = (state) => {

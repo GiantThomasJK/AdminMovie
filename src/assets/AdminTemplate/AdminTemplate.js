@@ -7,21 +7,24 @@ import {
   UserOutlined,
   VideoCameraOutlined,
 } from "@ant-design/icons";
-import { Breadcrumb, Layout, Menu } from "antd";
+import { Breadcrumb, Layout, Menu, Select } from "antd";
 import { useState, useNavigate } from "react";
 import { NavLink, Route, useHistory } from "react-router-dom";
 import SubMenu from "antd/lib/menu/SubMenu";
-import Background from "assets/img/BG.jpg";
+import Background from "assets/img/BG1.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import { SET_PROFILE } from "redux/authAction";
+import { useTranslation } from "react-i18next";
 
 function AdminTemplate(props) {
   const { Header, Content, Footer, Sider } = Layout;
   const { Component, ...restProps } = props;
-
+  let user = {};
   const userProfile = useSelector((state) => state.auth.profile);
   const history = useHistory();
   const dispatch = useDispatch();
+  const { Option } = Select;
+  const { t, i18n } = useTranslation();
 
   const [collapsed, setCollapsed] = useState(false);
 
@@ -38,12 +41,18 @@ function AdminTemplate(props) {
     history.push("/");
   };
 
+  const handleLanguage = (value) => {
+    i18n.changeLanguage(value);
+    console.log(value);
+  };
+
   const renderUserProfile = () => {
-    if (userProfile) {
+    if (localStorage.getItem("USER_LOGIN")) {
+      user = JSON.parse(localStorage.getItem("USER_LOGIN"));
       return (
         <>
-          <a style={{ color: "white" }} href="#">
-            Hi, {userProfile.hoTen}
+          <a className="ml-3" style={{ color: "white" }} href="#">
+            {t("Hi")}, {user.hoTen}
           </a>
           <a
             style={{ color: "white" }}
@@ -51,7 +60,7 @@ function AdminTemplate(props) {
             href="#"
             onClick={handleLogout}
           >
-            Log out
+            {t("Log out")}
           </a>
         </>
       );
@@ -63,16 +72,16 @@ function AdminTemplate(props) {
           className="mr-5 pointer-events-auto ml-8 rounded-md bg-indigo-600 py-2 px-3 text-[0.8125rem] font-semibold leading-5 text-white hover:bg-indigo-500"
           href="#"
         >
-          Sign In
+          {t("Sign in")}
         </a>
-        <a
+        {/* <a
           style={{ color: "white" }}
           className="mr-5 pointer-events-auto ml-8 rounded-md bg-indigo-600 py-2 px-3 text-[0.8125rem] font-semibold leading-5 text-white hover:bg-indigo-500"
           href="#"
           onClick={handleLogout}
         >
           Log out
-        </a>
+        </a> */}
       </>
     );
   };
@@ -111,24 +120,26 @@ function AdminTemplate(props) {
                   mode="inline"
                 >
                   <Menu.Item key="/admin/users" icon={<UserOutlined />}>
-                    <NavLink to="/admin/users">User</NavLink>
+                    <NavLink to="/admin/users">{t("User")}</NavLink>
                   </Menu.Item>
-                  <SubMenu key="sub1" icon={<FileOutlined />} title="Films">
+                  <SubMenu key="sub1" icon={<FileOutlined />} title={t("Films")}>
                     <Menu.Item
                       key="/admin/films"
                       icon={<VideoCameraOutlined />}
                     >
-                      <NavLink to="/admin/films">Films</NavLink>
+                      <NavLink to="/admin/films">{t("Films")}</NavLink>
                     </Menu.Item>
                     <Menu.Item
                       key="/admin/films/addnew"
                       icon={<VideoCameraOutlined />}
                     >
-                      <NavLink to="/admin/films/addnew">AddNew</NavLink>
+                      <NavLink to="/admin/films/addnew">
+                        {t("Add Film")}
+                      </NavLink>
                     </Menu.Item>
                   </SubMenu>
                   <Menu.Item key="/admin/showtimes" icon={<TeamOutlined />}>
-                    <NavLink to="/admin/showtimes">ShowTime</NavLink>
+                    <NavLink to="/admin/showtimes">{t("Showtime")}</NavLink>
                   </Menu.Item>
                 </Menu>
               </Sider>
@@ -139,6 +150,18 @@ function AdminTemplate(props) {
                     padding: 0,
                   }}
                 >
+                  {" "}
+                  <Select
+                    className="mr-5"
+                    onChange={handleLanguage}
+                    defaultValue="en"
+                    style={{
+                      width: 70,
+                    }}
+                  >
+                    <Option value="en">Eng</Option>
+                    <Option value="vi">VIE</Option>
+                  </Select>
                   {renderUserProfile()}
                 </Header>
                 <Content

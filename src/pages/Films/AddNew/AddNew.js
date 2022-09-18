@@ -15,7 +15,7 @@ import React, { useState } from "react";
 import moment from "moment";
 import { useDispatch } from "react-redux";
 import { uploadMoviesAction } from "redux/movieAction";
-
+import styles from "assets/utils/styles.module.css"
 const AddNew = () => {
   const [componentSize, setComponentSize] = useState("default");
   const [imgSrc, setImgSrc] = useState(null);
@@ -52,14 +52,12 @@ const AddNew = () => {
         if (key !== "hinhAnh") {
           formData.append(key, values[key]);
           console.log(formData.get(key));
-
         } else {
           formData.append("hinhAnh", values.hinhAnh, values.hinhAnh.name);
         }
       }
 
-      console.log(formData.get('hinhAnh'));
-
+      console.log(formData.get("hinhAnh"));
 
       dispatch(uploadMoviesAction(formData));
     },
@@ -106,6 +104,7 @@ const AddNew = () => {
       wrapperCol={{
         span: 14,
       }}
+
       layout="horizontal"
       initialValues={{
         size: componentSize,
@@ -113,7 +112,9 @@ const AddNew = () => {
       onValuesChange={onFormLayoutChange}
       size={componentSize}
     >
-      <h3 className="text-center text-4xl">Thêm mới phim</h3>
+      <h3 className="text-center text-4xl">
+        Thêm mới phim
+      </h3>
       <Form.Item label="Form Size" name="size">
         <Radio.Group>
           <Radio.Button value="small">Small</Radio.Button>
@@ -146,7 +147,13 @@ const AddNew = () => {
         <InputNumber onChange={handleChanngeInputNumber("danhGia")} min={1} />
       </Form.Item>
 
-      <Form.Item label="Hình ảnh">
+      <Form.Item
+        rules={[
+          {
+            required: "white"
+          }
+        ]}
+      style={{ color: "white" }} label="Hình ảnh">
         <input type="file" onChange={handleChangeFile} />
         <br />
         <img style={{ width: 150, height: 150 }} src={imgSrc} alt="" />

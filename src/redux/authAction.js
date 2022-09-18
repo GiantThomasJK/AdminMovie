@@ -13,7 +13,7 @@ export const fetchProfileAction = async (dispatch) => {
       type: SET_PROFILE,
       payload: res.data.content,
     });
-    console.log("user",res.data.content);
+    console.log("user", res.data.content);
   } catch (err) {
     console.log(err);
   }
@@ -31,6 +31,7 @@ export const signInAtion = (user) => {
       const profile = { ...res.data.content };
       delete profile.accessToken;
       localStorage.setItem("token", res.data.content.accessToken);
+      localStorage.setItem("USER_LOGIN", JSON.stringify(profile));
 
       dispatch({
         type: SET_PROFILE,

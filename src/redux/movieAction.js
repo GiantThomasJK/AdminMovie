@@ -92,6 +92,9 @@ export const updateMoviesAction = (formData) => {
         type: actionTypes.UPDATE_MOVIES,
         payload: res.data.content,
       });
+
+      alert("Cập nhật thành công");
+
     } catch (err) {
       console.log(err);
     }
