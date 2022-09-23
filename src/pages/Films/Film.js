@@ -115,8 +115,25 @@ function Film() {
       },
       sortDirections: ["descend", "ascend"],
       onFilter: (value, record) => record.address.indexOf(value) === 0,
-      width: "18%",
+      width: "16%",
     },
+    {
+      title: "Trailer",
+      dataIndex: "trailer",
+      render: (text, film) => {
+        return (
+          <Fragment>
+            {film.trailer.length > 50
+              ? film.trailer.substr(0, 50) + "..."
+              : film.trailer}
+          </Fragment>
+        );
+      },
+      defaultSortOrder: "descend",
+      sorter: (a, b) => a.film.trailer - b.film.trailer,
+      width: "2%",
+    },
+
     {
       title: "Mô Tả",
       dataIndex: "moTa",
@@ -132,14 +149,14 @@ function Film() {
         return (
           <Fragment>
             {film.moTa.length > 50
-              ? film.moTa.substr(0, 100) + "..."
+              ? film.moTa.substr(0, 80) + "..."
               : film.moTa}
           </Fragment>
         );
       },
       sortDirections: ["descend", "ascend"],
       onFilter: (value, record) => record.address.indexOf(value) === 0,
-      width: 500,
+      width: 300,
     },
     {
       title: "Hành Động",

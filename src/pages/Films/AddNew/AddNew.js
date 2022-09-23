@@ -16,7 +16,7 @@ import moment from "moment";
 import { useDispatch } from "react-redux";
 import { uploadMoviesAction } from "redux/movieAction";
 import styles from "assets/utils/styles.module.css";
-import { useHistory } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 const AddNew = () => {
   const [componentSize, setComponentSize] = useState("default");
   const [imgSrc, setImgSrc] = useState(null);
@@ -71,6 +71,12 @@ const AddNew = () => {
       }
     },
   });
+
+  if (!localStorage.getItem("USER_LOGIN")) {
+    alert("Bạn không có quyền truy cập vào trang này, vui lòng đăng nhập !");
+    return <Redirect to="/" />;
+  }
+
 
   const handleChangeSwitch = (name) => {
     return (value) => {

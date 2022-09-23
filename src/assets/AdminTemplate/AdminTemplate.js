@@ -46,10 +46,7 @@ function AdminTemplate(props) {
     console.log(value);
   };
 
-  // if(!localStorage.getItem("USER_LOGIN")){
-  //   alert("Bạn không có quyền truy cập vào trang này, vui lòng đăng nhập !")
-  //   return <Redirect to="/" />
-  // }
+
 
   const renderUserProfile = () => {
     if (localStorage.getItem("USER_LOGIN")) {

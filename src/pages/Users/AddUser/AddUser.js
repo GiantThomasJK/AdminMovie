@@ -16,7 +16,7 @@ import moment from "moment";
 import { useDispatch } from "react-redux";
 import { uploadMoviesAction } from "redux/movieAction";
 import { updateUsersAction, uploadUsersAction } from "redux/userAction";
-import { useHistory } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 const AddUser = () => {
@@ -67,6 +67,11 @@ const AddUser = () => {
     console.log(`selected ${value}`);
     formik.setFieldValue("maLoaiNguoiDung", value);
   };
+
+  if (!localStorage.getItem("USER_LOGIN")) {
+    alert("Bạn không có quyền truy cập vào trang này, vui lòng đăng nhập !");
+    return <Redirect to="/" />;
+  }
 
   return (
     <>

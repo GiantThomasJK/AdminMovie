@@ -20,7 +20,7 @@ import {
   updateMoviesAction,
   uploadMoviesAction,
 } from "redux/movieAction";
-import { useHistory } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 
 const Edit = (props) => {
   const [componentSize, setComponentSize] = useState("default");
@@ -79,9 +79,16 @@ const Edit = (props) => {
       dispatch(updateMoviesAction(formData));
     },
   });
+
   if (!selectedMovie) {
     return <Spin />;
   }
+
+  if (!localStorage.getItem("USER_LOGIN")) {
+    alert("Bạn không có quyền truy cập vào trang này, vui lòng đăng nhập !");
+    return <Redirect to="/" />;
+  }
+
   const handleChangeSwitch = (name) => {
     return (value) => {
       formik.setFieldValue(name, value);
