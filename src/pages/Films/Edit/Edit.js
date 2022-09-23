@@ -20,13 +20,14 @@ import {
   updateMoviesAction,
   uploadMoviesAction,
 } from "redux/movieAction";
+import { useHistory } from "react-router-dom";
 
 const Edit = (props) => {
   const [componentSize, setComponentSize] = useState("default");
   const selectedMovie = useSelector((state) => state.movies.moviesDetail);
 
   const [imgSrc, setImgSrc] = useState(null);
-
+  const history = useHistory();
   const [img, setImg] = useState("");
   const dispatch = useDispatch();
 
@@ -115,99 +116,111 @@ const Edit = (props) => {
   };
 
   return (
-    <Form
-      onSubmitCapture={formik.handleSubmit}
-      labelCol={{
-        span: 4,
-      }}
-      wrapperCol={{
-        span: 14,
-      }}
-      layout="horizontal"
-      initialValues={{
-        size: componentSize,
-      }}
-      onValuesChange={onFormLayoutChange}
-      size={componentSize}
-    >
-      <h3 className="text-white" style={{ color: "white" }}>Cập nhật</h3>
-      <Form.Item label="Form Size" name="size">
-        <Radio.Group>
-          <Radio.Button value="small">Small</Radio.Button>
-          <Radio.Button value="default">Default</Radio.Button>
-          <Radio.Button value="large">Large</Radio.Button>
-        </Radio.Group>
-      </Form.Item>
-      <Form.Item label="Tên Phim">
-        <Input
-          name="tenPhim"
-          onChange={formik.handleChange}
-          value={formik.values.tenPhim}
-        />
-      </Form.Item>
-      <Form.Item label="Trailer">
-        <Input
-          name="trailer"
-          onChange={formik.handleChange}
-          value={formik.values.trailer}
-        />
-      </Form.Item>
-      <Form.Item label="Mô Tả">
-        <Input
-          name="moTa"
-          onChange={formik.handleChange}
-          value={formik.values.moTa}
-        />
-      </Form.Item>
-      <Form.Item label="Ngày khởi chiếu">
-        <DatePicker
-          format={"DD/MM/YYYY"}
-          value={moment(formik.values.ngayKhoiChieu)}
-          onChange={handleChangeDatePicker}
-        />
-      </Form.Item>
-      <Form.Item label="Đang chiếu" valuePropName="checked">
-        <Switch
-          onChange={handleChangeSwitch("dangchieu")}
-          checked={formik.values.dangChieu}
-        />
-      </Form.Item>
-      <Form.Item label="Hot" valuePropName="checked">
-        <Switch
-          onChange={handleChangeSwitch("hot")}
-          checked={formik.values.hot}
-        />
-      </Form.Item>
-      <Form.Item label="Sắp chiếu" valuePropName="checked">
-        <Switch
-          onChange={handleChangeSwitch("sapChieu")}
-          checked={formik.values.sapChieu}
-        />
-      </Form.Item>
-      <Form.Item label="Số sao">
-        <InputNumber
-          onChange={handleChanngeInputNumber("danhGia")}
-          min={1}
-          value={formik.values.danhGia}
-        />
-      </Form.Item>
+    <>
+      <button
+        onClick={() => {
+          history.push("/admin/films");
+        }}
+        type="submit"
+        className="bg-blue-400 hover:bg-blue-600 text-white p-2"
+      >
+        Trở về
+      </button>
+      <Form
+        onSubmitCapture={formik.handleSubmit}
+        labelCol={{
+          span: 4,
+        }}
+        wrapperCol={{
+          span: 14,
+        }}
+        layout="horizontal"
+        initialValues={{
+          size: componentSize,
+        }}
+        onValuesChange={onFormLayoutChange}
+        size={componentSize}
+      >
+        <h3 className="text-4xl text-center">Cập nhật</h3>
 
-      <Form.Item label="Hình ảnh">
-        <input type="file" onChange={handleChangeFile} />
-        <br />
-        <img
-          style={{ width: 150, height: 150 }}
-          src={img === "" ? selectedMovie.hinhAnh : img}
-          alt=""
-        />
-      </Form.Item>
+        <Form.Item label="Form Size" name="size">
+          <Radio.Group>
+            <Radio.Button value="small">Small</Radio.Button>
+            <Radio.Button value="default">Default</Radio.Button>
+            <Radio.Button value="large">Large</Radio.Button>
+          </Radio.Group>
+        </Form.Item>
+        <Form.Item label="Tên Phim">
+          <Input
+            name="tenPhim"
+            onChange={formik.handleChange}
+            value={formik.values.tenPhim}
+          />
+        </Form.Item>
+        <Form.Item label="Trailer">
+          <Input
+            name="trailer"
+            onChange={formik.handleChange}
+            value={formik.values.trailer}
+          />
+        </Form.Item>
+        <Form.Item label="Mô Tả">
+          <Input
+            name="moTa"
+            onChange={formik.handleChange}
+            value={formik.values.moTa}
+          />
+        </Form.Item>
+        <Form.Item label="Ngày khởi chiếu">
+          <DatePicker
+            format={"DD/MM/YYYY"}
+            value={moment(formik.values.ngayKhoiChieu)}
+            onChange={handleChangeDatePicker}
+          />
+        </Form.Item>
+        <Form.Item label="Đang chiếu" valuePropName="checked">
+          <Switch
+            onChange={handleChangeSwitch("dangchieu")}
+            checked={formik.values.dangChieu}
+          />
+        </Form.Item>
+        <Form.Item label="Hot" valuePropName="checked">
+          <Switch
+            onChange={handleChangeSwitch("hot")}
+            checked={formik.values.hot}
+          />
+        </Form.Item>
+        <Form.Item label="Sắp chiếu" valuePropName="checked">
+          <Switch
+            onChange={handleChangeSwitch("sapChieu")}
+            checked={formik.values.sapChieu}
+          />
+        </Form.Item>
+        <Form.Item label="Số sao">
+          <InputNumber
+            onChange={handleChanngeInputNumber("danhGia")}
+            min={1}
+            value={formik.values.danhGia}
+          />
+        </Form.Item>
 
-      <Form.Item label="Tác vụ">
-        <button type="submit" className="bg-green-500 text-white p-2">
-          Cập nhật film
-        </button>
-      </Form.Item>
-    </Form>
+        <Form.Item label="Hình ảnh">
+          <input type="file" onChange={handleChangeFile} />
+          <br />
+          <img
+            style={{ width: 150, height: 150 }}
+            src={img === "" ? selectedMovie.hinhAnh : img}
+            alt=""
+          />
+        </Form.Item>
+
+        <Form.Item label="Tác vụ">
+          <button type="submit" className="bg-green-500 text-white p-2">
+            Cập nhật film
+          </button>
+        </Form.Item>
+      </Form>
+    </>
   );
 };
 

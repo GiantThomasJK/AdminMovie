@@ -122,7 +122,25 @@ function User() {
       },
       sortDirections: ["descend", "ascend"],
       onFilter: (value, record) => record.address.indexOf(value) === 0,
-      width: 300,
+      width: 200,
+    },
+    {
+      title: `${t("User type")}`,
+      dataIndex: "maLoaiNguoiDung",
+      sorter: (a, b) => {
+        let tenPhimA = a.maLoaiNguoiDung.toLowerCase().trim();
+        let tenPhimB = b.maLoaiNguoiDung.toLowerCase().trim();
+        if (tenPhimA > tenPhimB) {
+          return 1;
+        }
+        return -1;
+      },
+      render: (text, film) => {
+        return <span>{text}</span>;
+      },
+      sortDirections: ["descend", "ascend"],
+      onFilter: (value, record) => record.address.indexOf(value) === 0,
+      width: 200,
     },
 
     {

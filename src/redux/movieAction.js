@@ -14,7 +14,7 @@ export const fetchMoviesAction = (config, cb, tenPhim = "") => {
     try {
       const params = tenPhim != "" ? `&tenPhim=${tenPhim}` : "";
       const res = await instance.request({
-        url: "api/QuanLyPhim/LayDanhSachPhim?maNhom=GP01" + params,
+        url: "api/QuanLyPhim/LayDanhSachPhim?maNhom=GP00" + params,
         method: "GET",
         params: {
           soTrang: config.currentPage,
@@ -39,8 +39,6 @@ export const uploadMoviesAction = (formData) => {
         method: "POST",
         data: formData,
       });
-
-      console.log("call duoc r");
 
       // dispatch({
       //   type: actionTypes.UPLOAD_MOVIES,
@@ -94,7 +92,6 @@ export const updateMoviesAction = (formData) => {
       });
 
       alert("Cập nhật thành công");
-
     } catch (err) {
       console.log(err);
     }

@@ -9,7 +9,7 @@ import {
 } from "@ant-design/icons";
 import { Breadcrumb, Layout, Menu, Select } from "antd";
 import { useState, useNavigate } from "react";
-import { NavLink, Route, useHistory } from "react-router-dom";
+import { NavLink, Redirect, Route, useHistory } from "react-router-dom";
 import SubMenu from "antd/lib/menu/SubMenu";
 import Background from "assets/img/BG1.jpg";
 import { useDispatch, useSelector } from "react-redux";
@@ -45,6 +45,11 @@ function AdminTemplate(props) {
     i18n.changeLanguage(value);
     console.log(value);
   };
+
+  // if(!localStorage.getItem("USER_LOGIN")){
+  //   alert("Bạn không có quyền truy cập vào trang này, vui lòng đăng nhập !")
+  //   return <Redirect to="/" />
+  // }
 
   const renderUserProfile = () => {
     if (localStorage.getItem("USER_LOGIN")) {

@@ -115,7 +115,7 @@ function Film() {
       },
       sortDirections: ["descend", "ascend"],
       onFilter: (value, record) => record.address.indexOf(value) === 0,
-      width: "15%",
+      width: "18%",
     },
     {
       title: "Mô Tả",
@@ -132,14 +132,14 @@ function Film() {
         return (
           <Fragment>
             {film.moTa.length > 50
-              ? film.moTa.substr(0, 50) + "..."
+              ? film.moTa.substr(0, 100) + "..."
               : film.moTa}
           </Fragment>
         );
       },
       sortDirections: ["descend", "ascend"],
       onFilter: (value, record) => record.address.indexOf(value) === 0,
-      width: 300,
+      width: 500,
     },
     {
       title: "Hành Động",
