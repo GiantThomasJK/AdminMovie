@@ -1,19 +1,31 @@
-import AdminTemplate from "assets/AdminTemplate/AdminTemplate";
-import Login from "components/authentication/Login";
-import UserTemplate from "components/authentication/UserTemplate";
-import Dashboard from "pages/Users/Dashboard";
-import AddNew from "pages/Films/AddNew/AddNew";
-import Edit from "pages/Films/Edit/Edit";
-import Film from "pages/Films/Film";
-import Showtime from "pages/Showtime/Showtime";
-import { Suspense, useEffect } from "react";
+// import AdminTemplate from "assets/AdminTemplate/AdminTemplate";
+// // import Login from "components/authentication/Login";
+// import UserTemplate from "components/authentication/UserTemplate";
+// import Dashboard from "pages/Users/Dashboard";
+// import AddNew from "pages/Films/AddNew/AddNew";
+// import Edit from "pages/Films/Edit/Edit";
+// import Film from "pages/Films/Film";
+// import Showtime from "pages/Showtime/Showtime";
+import { Suspense, useEffect, lazy } from "react";
 import { useDispatch } from "react-redux";
 import { Route } from "react-router";
 import { BrowserRouter, Switch } from "react-router-dom";
 import { fetchProfileAction } from "redux/authAction";
 import "./App";
-import AddUser from "pages/Users/AddUser/AddUser";
-import EditUser from "pages/Users/EditUser.js/EditUser";
+// import AddUser from "pages/Users/AddUser/AddUser";
+// import EditUser from "pages/Users/EditUser.js/EditUser";
+
+const Login = lazy(() => import("components/authentication/Login"));
+const AdminTemplate = lazy(() => import("assets/AdminTemplate/AdminTemplate"));
+const UserTemplate = lazy(() => import("components/authentication/UserTemplate"));
+const Dashboard = lazy(() => import("pages/Users/Dashboard"));
+const AddNew = lazy(() => import("pages/Films/AddNew/AddNew"));
+const Edit = lazy(() => import("pages/Films/Edit/Edit"));
+const Film = lazy(() => import("pages/Films/Film"));
+const Showtime = lazy(() => import("pages/Showtime/Showtime"));
+const AddUser = lazy(() => import("pages/Users/AddUser/AddUser"));
+const EditUser = lazy(() => import("pages/Users/EditUser.js/EditUser"));
+
 
 function App() {
   const dispatch = useDispatch();

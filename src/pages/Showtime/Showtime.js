@@ -29,7 +29,6 @@ function Showtime(props) {
 
     onSubmit: async (values) => {
       try {
-        console.log(values);
         const result = await createScheduleTheater(values);
         alert(result);
       } catch (err) {
@@ -57,7 +56,6 @@ function Showtime(props) {
     cumRapChieu: [],
   });
 
-  console.log(state.cumRapChieu);
 
   const convertSelectHTR = () => {
     return state.heThongRapChieu?.map((htr, index) => {
@@ -98,7 +96,6 @@ function Showtime(props) {
       "ngayChieuGioChieu",
       moment(value).format("DD/MM/YYYY hh:mm:ss")
     );
-    console.log(moment(value).format("DD/MM/YYYY hh:mm:ss"));
   };
 
   const onChangeDate = (value) => {
@@ -106,7 +103,6 @@ function Showtime(props) {
       "ngayChieuGioChieu",
       moment(value).format("DD/MM/YYYY hh:mm:ss")
     );
-    console.log(moment(value).format("DD/MM/YYYY hh:mm:ss"));
   };
 
   const onChangeInputNumber = (value) => {

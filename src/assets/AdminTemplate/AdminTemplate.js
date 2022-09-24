@@ -33,6 +33,8 @@ function AdminTemplate(props) {
     localStorage.removeItem("token");
     localStorage.removeItem("USER_LOGIN");
     localStorage.removeItem("filmDetails");
+    localStorage.removeItem("userDetail");
+
     dispatch({
       type: SET_PROFILE,
       payload: null,
