@@ -14,6 +14,8 @@ import {
   searchMoviesAction,
 } from "redux/movieAction";
 import { NavLink, useHistory } from "react-router-dom";
+import swal from "sweetalert";
+
 const { Search } = Input;
 
 function Film() {
@@ -176,11 +178,16 @@ function Film() {
               key={2}
               className="mr-2 text-2xl"
               onClick={() => {
-                if (
-                  window.confirm("Bạn có chắc muốn xóa phim" + film.tenPhim)
-                ) {
-                  dispatch(deleteMovieAction(film.maPhim));
-                }
+                swal({
+                  title: "Are you sure?",
+                  text: "Are you sure that you want to delete this movie?",
+                  icon: "warning",
+                  dangerMode: true,
+                }).then((willDetele) => {
+                  if (willDetele) {
+                    dispatch(deleteMovieAction(film.maPhim));
+                  }
+                });
               }}
             >
               <DeleteOutlined style={{ color: "red" }} />

@@ -1,4 +1,5 @@
 import instance from "api/instance";
+import swal from "sweetalert";
 
 export const actionTypes = {
   SET_MOVIES: "movies/SET_MOVIES",
@@ -39,6 +40,15 @@ export const uploadMoviesAction = (formData) => {
         method: "POST",
         data: formData,
       });
+
+      if(res.data.statusCode === 200){
+        swal({
+          title: "Uploaded!",
+          text: "Movie Uploaded Successfully",
+          icon: "success",
+          button: "OK",
+        })
+      }
 
       // dispatch({
       //   type: actionTypes.UPLOAD_MOVIES,
@@ -86,12 +96,20 @@ export const updateMoviesAction = (formData) => {
 
       console.log(res.data.content);
 
+      if(res.data.statusCode === 200){
+        swal({
+          title: "Updated!",
+          text: "Movie Updated Successfully",
+          icon: "success",
+          button: "OK",
+        })
+      }
+
       dispatch({
         type: actionTypes.UPDATE_MOVIES,
         payload: res.data.content,
       });
 
-      alert("Cập nhật thành công");
     } catch (err) {
       console.log(err);
     }
@@ -115,6 +133,15 @@ export const deleteMovieAction = (maPhim) => {
         type: actionTypes.DELETE_MOVIES,
         payload: res.data.content,
       });
+
+      if(res.data.statusCode === 200){
+        swal({
+          title: "Deleted!",
+          text: "Movie Deleted Successfully",
+          icon: "success",
+          button: "OK",
+        })
+      }
     } catch (err) {
       console.log(err);
     }

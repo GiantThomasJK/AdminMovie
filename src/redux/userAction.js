@@ -1,4 +1,5 @@
 import instance from "api/instance";
+import swal from "sweetalert";
 
 export const SET_USER = "user/SET_USER";
 export const SET_USER_DETAIL = "user/SET_USER_DETAIL";
@@ -60,7 +61,16 @@ export const uploadUsersAction = (userData) => {
         payload: res.data.content,
       });
 
-      alert("Thêm người dùng thành công");
+      if(res.data.statusCode === 200){
+        swal({
+          title: "Uploaded!",
+          text: "User Uploaded Successfully",
+          icon: "success",
+          button: "OK",
+        })
+      }
+
+
     } catch (err) {
       console.log(err);
     }
@@ -81,7 +91,15 @@ export const updateUsersAction = (userData) => {
         payload: res.data.content,
       });
 
-      alert("Cập nhật thành công");
+      if(res.data.statusCode === 200){
+        swal({
+          title: "Updated!",
+          text: "User Updated Successfully",
+          icon: "success",
+          button: "OK",
+        })
+      }
+
     } catch (err) {
       console.log(err);
     }
@@ -105,7 +123,15 @@ export const deleteUsersAction = (TaiKhoan) => {
         payload: res.data.content,
       });
 
-      alert("Xóa thành công");
+      if(res.data.statusCode === 200){
+        swal({
+          title: "Deleted!",
+          text: "User Deleted Successfully",
+          icon: "delete",
+          button: "OK",
+        })
+      }
+
     } catch (err) {
       console.log(err);
     }

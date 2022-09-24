@@ -17,6 +17,8 @@ import { useDispatch } from "react-redux";
 import { uploadMoviesAction } from "redux/movieAction";
 import styles from "assets/utils/styles.module.css";
 import { Redirect, useHistory } from "react-router-dom";
+import swal from "sweetalert";
+
 const AddNew = () => {
   const [componentSize, setComponentSize] = useState("default");
   const [imgSrc, setImgSrc] = useState(null);
@@ -63,12 +65,6 @@ const AddNew = () => {
       console.log(formData.get("hinhAnh"));
 
       dispatch(uploadMoviesAction(formData));
-
-      if (
-        window.confirm("Thêm phim thành công, bấm OK để trở về trang danh sách")
-      ) {
-        history.push("/admin/films");
-      }
     },
   });
 
@@ -76,7 +72,6 @@ const AddNew = () => {
     alert("Bạn không có quyền truy cập vào trang này, vui lòng đăng nhập !");
     return <Redirect to="/" />;
   }
-
 
   const handleChangeSwitch = (name) => {
     return (value) => {
