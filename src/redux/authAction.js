@@ -13,7 +13,6 @@ export const fetchProfileAction = async (dispatch) => {
       type: SET_PROFILE,
       payload: res.data.content,
     });
-    console.log("user", res.data.content);
   } catch (err) {
     console.log(err);
   }

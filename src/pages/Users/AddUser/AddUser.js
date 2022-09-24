@@ -49,7 +49,6 @@ const AddUser = () => {
     },
     onSubmit: (values) => {
       values.maNhom = "GP01";
-      console.log(values);
       handleAddUser(values);
       handleUpdateUser(values);
     },
@@ -64,7 +63,6 @@ const AddUser = () => {
   };
 
   const handleChange = (value) => {
-    console.log(`selected ${value}`);
     formik.setFieldValue("maLoaiNguoiDung", value);
   };
 

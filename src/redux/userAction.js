@@ -21,7 +21,6 @@ export const fetchUserListAction = (tuKhoa = "") => {
         type: SET_USER,
         payload: res.data.content.items,
       });
-      console.log("UserList ", res.data.content.items);
     } catch (err) {
       console.log(err);
     }
@@ -40,7 +39,6 @@ export const fetchUserDetailAction = (tuKhoa = "") => {
         type: SET_USER_DETAIL,
         payload: res.data.content,
       });
-      console.log("UserList ", res.data.content);
     } catch (err) {
       console.log(err);
     }

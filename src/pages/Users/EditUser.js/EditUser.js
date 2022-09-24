@@ -29,7 +29,6 @@ const EditUser = (props) => {
   const [componentSize, setComponentSize] = useState("default");
   const [imgSrc, setImgSrc] = useState(null);
   const selectedUser = useSelector((state) => state.users.userDetail);
-  console.log("detail", selectedUser);
   let user = {};
   if(localStorage.getItem("userDetail")){
     user = JSON.parse(localStorage.getItem("userDetail"))
@@ -59,7 +58,6 @@ const EditUser = (props) => {
     },
     onSubmit: (values) => {
       values.maNhom = "GP01";
-      console.log(values.taiKhoan);
       handleUpdateUser(values);
     },
   });
@@ -69,7 +67,6 @@ const EditUser = (props) => {
   };
 
   const handleChange = (value) => {
-    console.log(`selected ${value}`);
     formik.setFieldValue("maLoaiNguoiDung", value);
   };
 

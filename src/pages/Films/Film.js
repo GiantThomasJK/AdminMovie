@@ -22,7 +22,6 @@ function Film() {
   const dispatch = useDispatch();
   const history = useHistory();
   const selectedMovie = useSelector((state) => state.movies.movies);
-  console.log(selectedMovie);
 
   const [config, setConfig] = useState({
     currentPage: 1,
@@ -39,7 +38,6 @@ function Film() {
   };
 
   const onSearch = (value) => {
-    console.log(value);
     dispatch(fetchMoviesAction(config, changeTotalCount, value));
   };
 
@@ -210,7 +208,7 @@ function Film() {
   const data = selectedMovie;
 
   const onChange = (pagination, filters, sorter, extra) => {
-    console.log("params", pagination, filters, sorter, extra);
+    // console.log("params", pagination, filters, sorter, extra);
   };
   const suffix = (
     <AudioOutlined

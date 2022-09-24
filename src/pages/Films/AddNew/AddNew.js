@@ -31,7 +31,6 @@ const AddNew = () => {
   };
 
   const handleChangeDatePicker = (value) => {
-    console.log();
     let ngayKhoiChieu = moment(value).format("DD/MM/YYYY");
     formik.setFieldValue("ngayKhoiChieu", ngayKhoiChieu);
   };
@@ -51,18 +50,15 @@ const AddNew = () => {
     },
     onSubmit: (values) => {
       values.maNhom = "GP00";
-      console.log(values);
       let formData = new FormData();
       for (let key in values) {
         if (key !== "hinhAnh") {
           formData.append(key, values[key]);
-          console.log(formData.get(key));
         } else {
           formData.append("hinhAnh", values.hinhAnh, "hinhanh.jpg");
         }
       }
 
-      console.log(formData.get("hinhAnh"));
 
       dispatch(uploadMoviesAction(formData));
     },
@@ -87,7 +83,6 @@ const AddNew = () => {
 
   const handleChangeFile = (e) => {
     let file = e.target.files[0];
-    console.log(file.type);
 
     if (
       file.type === "image/jpeg" ||

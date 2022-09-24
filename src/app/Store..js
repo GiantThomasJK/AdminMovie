@@ -26,8 +26,8 @@ const logger = (state) => {
       //   type: action.type,
       //   payload: {},
       // };
-      console.log(action);
-      console.log("logger");
+      // console.log(action);
+      // console.log("logger");
       next(action);
     };
   };

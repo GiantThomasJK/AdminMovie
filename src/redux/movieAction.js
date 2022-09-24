@@ -72,7 +72,6 @@ export const fetchMoviesDeatil = (maPhim) => {
         },
       });
 
-      console.log(res.data.content);
 
       dispatch({
         type: actionTypes.SET_MOVIES_DETAIL,
@@ -93,7 +92,6 @@ export const updateMoviesAction = (formData) => {
         data: formData,
       });
 
-      console.log(res.data.content);
 
       if (res.data.statusCode === 200) {
         swal({
@@ -125,7 +123,7 @@ export const deleteMovieAction = (maPhim) => {
         },
       });
 
-      console.log(res.data.content);
+
 
       dispatch({
         type: actionTypes.DELETE_MOVIES,

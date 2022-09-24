@@ -33,7 +33,6 @@ const Edit = (props) => {
 
   useEffect(() => {
     let { id } = props.match.params;
-    console.log(id);
     dispatch(fetchMoviesDeatil(id));
   }, []);
 
@@ -63,12 +62,10 @@ const Edit = (props) => {
     },
     onSubmit: (values) => {
       values.maNhom = "GP01";
-      console.log(values);
       let formData = new FormData();
       for (let key in values) {
         if (key !== "hinhAnh") {
           formData.append(key, values[key]);
-          console.log(formData.get(key));
         } else {
           if (values.hinhAnh !== null) {
             formData.append("File", values.hinhAnh, values.hinhAnh.name);
@@ -103,7 +100,7 @@ const Edit = (props) => {
 
   const handleChangeFile = (e) => {
     let file = e.target.files[0];
-    console.log(file.type);
+
 
     if (
       file.type === "image/jpeg" ||

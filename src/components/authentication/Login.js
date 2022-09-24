@@ -23,7 +23,6 @@ function Login() {
       await dispatch(signInAtion(values));
       history.push("/admin/users");
 
-      console.log(values);
     },
   });
   return (

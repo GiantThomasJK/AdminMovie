@@ -43,7 +43,6 @@ function AdminTemplate(props) {
 
   const handleLanguage = (value) => {
     i18n.changeLanguage(value);
-    console.log(value);
   };
 
 

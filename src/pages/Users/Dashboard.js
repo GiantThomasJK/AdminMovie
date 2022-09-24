@@ -45,7 +45,6 @@ function User() {
   };
 
   const onSearch = (value) => {
-    console.log(value);
     dispatch(fetchUserListAction(value));
   };
 
@@ -199,7 +198,7 @@ function User() {
   const data = selectedUser;
 
   const onChange = (pagination, filters, sorter, extra) => {
-    console.log("params", pagination, filters, sorter, extra);
+    // console.log("params", pagination, filters, sorter, extra);
   };
   const suffix = (
     <AudioOutlined
