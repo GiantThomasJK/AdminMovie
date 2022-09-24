@@ -1,0 +1,24 @@
+.svg{
+
+}
+
+.container{
+    display: flex;
+    background: black;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.path{
+    stroke-dasharray:863.4943237304688px ;
+    stroke-dashoffset: 863.4943237304688px;
+    animation: LineAnimation 5s ease forwards;
+    animation-delay: 1s;
+}
+
+@keyframes LineAnimation {
+    to {
+        stroke-dashoffset: 0px;
+    }
+}

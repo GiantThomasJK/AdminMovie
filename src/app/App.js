@@ -6,7 +6,8 @@
 // import Edit from "pages/Films/Edit/Edit";
 // import Film from "pages/Films/Film";
 // import Showtime from "pages/Showtime/Showtime";
-import { Suspense, useEffect, lazy } from "react";
+import Loading from "pages/Loading/Loading";
+import { Suspense, useEffect, lazy, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Route } from "react-router";
 import { BrowserRouter, Switch } from "react-router-dom";
@@ -17,7 +18,9 @@ import "./App";
 
 const Login = lazy(() => import("components/authentication/Login"));
 const AdminTemplate = lazy(() => import("assets/AdminTemplate/AdminTemplate"));
-const UserTemplate = lazy(() => import("components/authentication/UserTemplate"));
+const UserTemplate = lazy(() =>
+  import("components/authentication/UserTemplate")
+);
 const Dashboard = lazy(() => import("pages/Users/Dashboard"));
 const AddNew = lazy(() => import("pages/Films/AddNew/AddNew"));
 const Edit = lazy(() => import("pages/Films/Edit/Edit"));
@@ -26,37 +29,68 @@ const Showtime = lazy(() => import("pages/Showtime/Showtime"));
 const AddUser = lazy(() => import("pages/Users/AddUser/AddUser"));
 const EditUser = lazy(() => import("pages/Users/EditUser.js/EditUser"));
 
-
 function App() {
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(true);
+
+  // useEffect(() => {
+  //   dispatch(fetchProfileAction);
+  // });
 
   useEffect(() => {
-    dispatch(fetchProfileAction);
+    setTimeout(() => {
+      setLoading(false);
+    }, 6 * 1000);
   });
   return (
-    <BrowserRouter>
-      <Suspense>
-        <Switch>
-          <AdminTemplate path="/admin" exact Component={Dashboard} />
-          <AdminTemplate path="/admin/films" exact Component={Film} />
-          <AdminTemplate path="/admin/films/addnew" exact Component={AddNew} />
-          <AdminTemplate path="/admin/films/edit/:id" exact Component={Edit} />
-          <AdminTemplate
-            path="/admin/films/showtime/:id/:tenPhim"
-            exact
-            Component={Showtime}
-          />
-          <AdminTemplate path="/admin/login" exact Component={Login} />
+    <div>
+      {loading && <Loading />}
+      {!loading && (
+        <BrowserRouter>
+          <Suspense>
+            <Switch>
+              <AdminTemplate path="/admin" exact Component={Dashboard} />
+              <AdminTemplate path="/admin/films" exact Component={Film} />
+              <AdminTemplate
+                path="/admin/films/addnew"
+                exact
+                Component={AddNew}
+              />
+              <AdminTemplate
+                path="/admin/films/edit/:id"
+                exact
+                Component={Edit}
+              />
+              <AdminTemplate
+                path="/admin/films/showtime/:id/:tenPhim"
+                exact
+                Component={Showtime}
+              />
+              <AdminTemplate path="/admin/login" exact Component={Login} />
 
-          <AdminTemplate path="/admin/users" exact Component={Dashboard} />
-          <AdminTemplate path="/admin/users/addUser" exact Component={AddUser} />
-          <AdminTemplate path="/admin/users/edit/:email" exact Component={EditUser} />
+              <AdminTemplate path="/admin/users" exact Component={Dashboard} />
+              <AdminTemplate
+                path="/admin/users/addUser"
+                exact
+                Component={AddUser}
+              />
+              <AdminTemplate
+                path="/admin/users/edit/:email"
+                exact
+                Component={EditUser}
+              />
 
-          <AdminTemplate path="/admin/showtimes" exact Component={Showtime} />
-          <AdminTemplate path="/" exact Component={Login} />
-        </Switch>
-      </Suspense>
-    </BrowserRouter>
+              <AdminTemplate
+                path="/admin/showtimes"
+                exact
+                Component={Showtime}
+              />
+              <AdminTemplate path="/" exact Component={Login} />
+            </Switch>
+          </Suspense>
+        </BrowserRouter>
+      )}
+    </div>
   );
 }
 
