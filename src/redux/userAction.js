@@ -127,7 +127,7 @@ export const deleteUsersAction = (TaiKhoan) => {
         swal({
           title: "Deleted!",
           text: "User Deleted Successfully",
-          icon: "delete",
+          icon: "success",
           button: "OK",
         })
       }

@@ -16,6 +16,8 @@ import {
 import { NavLink, useHistory } from "react-router-dom";
 import { deleteUsersAction, fetchUserListAction } from "redux/userAction";
 import { useTranslation } from "react-i18next";
+import swal from "sweetalert";
+
 const { Search } = Input;
 
 function User() {
@@ -164,13 +166,17 @@ function User() {
               key={2}
               className="mr-4 text-2xl"
               onClick={() => {
-                if (
-                  window.confirm(
-                    "Bạn có chắc muốn xóa tài khoản " + film.taiKhoan
-                  )
-                ) {
-                  dispatch(deleteUsersAction(film.taiKhoan));
-                }
+                swal({
+                  title: "Are you sure?",
+                  text: "Are you sure that you want to delete this user?",
+                  icon: "warning",
+                  dangerMode: true,
+                }).then((willDetele) => {
+                  if (willDetele) {
+                    dispatch(deleteUsersAction(film.taiKhoan));
+                  }
+                });
+
               }}
             >
               <DeleteOutlined style={{ color: "red" }} />

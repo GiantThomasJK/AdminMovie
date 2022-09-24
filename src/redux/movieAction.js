@@ -1,4 +1,5 @@
 import instance from "api/instance";
+import { useHistory } from "react-router-dom";
 import swal from "sweetalert";
 
 export const actionTypes = {
@@ -41,13 +42,13 @@ export const uploadMoviesAction = (formData) => {
         data: formData,
       });
 
-      if(res.data.statusCode === 200){
+      if (res.data.statusCode === 200) {
         swal({
           title: "Uploaded!",
           text: "Movie Uploaded Successfully",
           icon: "success",
           button: "OK",
-        })
+        });
       }
 
       // dispatch({
@@ -73,8 +74,6 @@ export const fetchMoviesDeatil = (maPhim) => {
 
       console.log(res.data.content);
 
-      console.log("call duoc r");
-
       dispatch({
         type: actionTypes.SET_MOVIES_DETAIL,
         payload: res.data.content,
@@ -96,20 +95,19 @@ export const updateMoviesAction = (formData) => {
 
       console.log(res.data.content);
 
-      if(res.data.statusCode === 200){
+      if (res.data.statusCode === 200) {
         swal({
           title: "Updated!",
           text: "Movie Updated Successfully",
           icon: "success",
           button: "OK",
-        })
+        });
       }
 
       dispatch({
         type: actionTypes.UPDATE_MOVIES,
         payload: res.data.content,
       });
-
     } catch (err) {
       console.log(err);
     }
@@ -134,13 +132,13 @@ export const deleteMovieAction = (maPhim) => {
         payload: res.data.content,
       });
 
-      if(res.data.statusCode === 200){
+      if (res.data.statusCode === 200) {
         swal({
           title: "Deleted!",
           text: "Movie Deleted Successfully",
           icon: "success",
           button: "OK",
-        })
+        });
       }
     } catch (err) {
       console.log(err);
