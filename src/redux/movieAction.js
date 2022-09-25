@@ -198,6 +198,14 @@ export const createScheduleTheater = async (shedule) => {
       method: "POST",
       data: shedule,
     });
+
+    swal({
+      title: "Uploaded!",
+      text: "Showtime Uploaded Successfully",
+      icon: "success",
+      button: "OK",
+    })
+
     return res.data.content;
   } catch (err) {
     console.log(err);

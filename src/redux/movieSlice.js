@@ -22,12 +22,6 @@ const reducer = (state = initialState, action) => {
       });
     }
 
-    case actionTypes.UPDATE_MOVIES: {
-      return produce(state, (draft) => {
-        draft.updateMovies = action.payload;
-      });
-    }
-
     default:
       return state;
   }

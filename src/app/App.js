@@ -41,7 +41,7 @@ function App() {
     setTimeout(() => {
       setLoading(false);
     }, 6 * 1000);
-  });
+  },[]);
   return (
     <div>
       {loading && <Loading />}

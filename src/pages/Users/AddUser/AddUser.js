@@ -160,13 +160,13 @@ const AddUser = () => {
               span: 24,
             }}
           >
-            <button
+            {/* <button
               onClick={() => handleUpdateUser}
               type="submit"
               className="bg-blue-500 hover:bg-blue-600 text-white p-2"
             >
               {t("Update")}
-            </button>
+            </button> */}
           </Form.Item>
         </div>
       </Form>

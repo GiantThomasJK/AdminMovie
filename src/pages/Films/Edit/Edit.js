@@ -55,13 +55,13 @@ const Edit = (props) => {
       ngayKhoiChieu: selectedMovie?.ngayKhoiChieu,
       dangChieu: selectedMovie?.dangChieu,
       hot: selectedMovie?.hot,
-      maNhom: "GP01",
+      maNhom: "GP00",
       sapChieu: selectedMovie?.sapChieu,
       danhGia: selectedMovie?.danhGia,
       hinhAnh: null,
     },
     onSubmit: (values) => {
-      values.maNhom = "GP01";
+      values.maNhom = "GP00";
       let formData = new FormData();
       for (let key in values) {
         if (key !== "hinhAnh") {
