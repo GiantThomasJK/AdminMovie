@@ -41,6 +41,16 @@ function Film() {
     dispatch(fetchMoviesAction(config, changeTotalCount, value));
   };
 
+  if (!localStorage.getItem("USER_LOGIN")) {
+    swal({
+      title: "Warning!",
+      text: "Please login to continue action",
+      icon: "warning",
+      button: "OK",
+    });
+    history.push("/")
+  }
+
   useEffect(() => {
     fetchMovies();
   }, [config.currentPage]);

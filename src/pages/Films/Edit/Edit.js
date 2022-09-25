@@ -21,6 +21,7 @@ import {
   uploadMoviesAction,
 } from "redux/movieAction";
 import { Redirect, useHistory } from "react-router-dom";
+import swal from "sweetalert";
 
 const Edit = (props) => {
   const [componentSize, setComponentSize] = useState("default");
@@ -31,6 +32,15 @@ const Edit = (props) => {
   const [img, setImg] = useState("");
   const dispatch = useDispatch();
 
+  if (!localStorage.getItem("USER_LOGIN")) {
+    swal({
+      title: "Warning!",
+      text: "Please login to continue action",
+      icon: "warning",
+      button: "OK",
+    });
+    history.push("/")
+  }
   useEffect(() => {
     let { id } = props.match.params;
     dispatch(fetchMoviesDeatil(id));

@@ -17,6 +17,7 @@ import {
 import { useFormik } from "formik";
 import moment from "moment";
 import { useHistory } from "react-router-dom";
+import swal from "sweetalert";
 
 function Showtime(props) {
   const history = useHistory();
@@ -37,6 +38,16 @@ function Showtime(props) {
       }
     },
   });
+
+  if (!localStorage.getItem("USER_LOGIN")) {
+    swal({
+      title: "Warning!",
+      text: "Please login to continue action",
+      icon: "warning",
+      button: "OK",
+    });
+    history.push("/");
+  }
 
   const handleChangeHeThongRap = async (value) => {
     try {

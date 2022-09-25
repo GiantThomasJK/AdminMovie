@@ -36,6 +36,16 @@ function User() {
     totalCount: 0,
   });
 
+  if (!localStorage.getItem("USER_LOGIN")) {
+    swal({
+      title: "Warning!",
+      text: "Please login to continue action",
+      icon: "warning",
+      button: "OK",
+    });
+    history.push("/")
+  }
+
   const changeTotalCount = (total) => {
     setConfig({ ...config, totalCount: total });
   };
